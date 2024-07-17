@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.book-card {
+.bookCard {
   border: 2px solid black;
   border-radius: 10%;
   padding: 1rem;
@@ -11,3 +11,14 @@
   margin: 1rem;
   text-align: center;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontal {
+  display: flex;
+  align-items: center;
+}
+
