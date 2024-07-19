@@ -4,10 +4,11 @@
 
 .bookCard {
   border: 2px solid black;
-  border-radius: 10%;
+  border-radius: 17%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   padding: 1rem;
   width: 8rem;
-  height: 14rem;
+  height: 16rem;
   margin: 1rem;
   text-align: center;
 }

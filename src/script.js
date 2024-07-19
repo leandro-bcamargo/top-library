@@ -23,35 +23,49 @@ function Book(author, title, numPages, hasBeenRead, year) {
   this.year = year;
 }
 
+function getBookIndex() {
+  return 
+}
+
 function addBookToLibrary(book) {
   myLibrary.push(book);
-  console.log('myLibrary:', myLibrary)
   displayBooks();
+}
+
+function handleRemoveBook(e) {
+  const indexToRemove = e.target.parentElement.getAttribute('libraryIndex');
+  myLibrary.splice(indexToRemove, 1);
+  displayBooks();
+}
+
+function createBookCard(book) {
+  const bookCard = document.createElement('div');
+    bookCard.classList.add('bookCard');
+    bookCard.setAttribute('libraryIndex', myLibrary.length-1);
+    const author = document.createElement('p');
+    author.innerHTML = book.author;
+    const title = document.createElement('h3');
+    title.innerText = book.title;
+    const numPages = document.createElement('p');
+    numPages.innerHTML = `${book.numPages} pages`;
+    const hasBeenRead = document.createElement('p');
+    hasBeenRead.innerHTML = book.hasBeenRead ? "Read" : "Not Yet Read";
+    const year = document.createElement('p');
+    year.innerHTML = book.year;
+    const removeBookBtn = document.createElement('button');
+    removeBookBtn.textContent = "Remove";
+    removeBookBtn.addEventListener("click", (e) => handleRemoveBook(e));
+
+    bookCard.append(author, title, numPages, hasBeenRead, year, removeBookBtn);
+
+    return bookCard;
 }
 
 function displayBooks() {
   const books = document.querySelector("#books");
   books.innerHTML = "";
   for (let book of myLibrary) {
-    const bookCard = document.createElement('div');
-    bookCard.classList.add('bookCard');
-
-    const author = document.createElement('p');
-    author.innerHTML = book.author;
-
-    const title = document.createElement('h3');
-    title.innerText = book.title;
-
-    const numPages = document.createElement('p');
-    numPages.innerHTML = `${book.numPages} pages`;
-
-    const hasBeenRead = document.createElement('p');
-    hasBeenRead.innerHTML = book.hasBeenRead ? "Read" : "Not Yet Read";
-
-    const year = document.createElement('p');
-    year.innerHTML = book.year;
-
-    bookCard.append(author, title, numPages, hasBeenRead, year);
+    const bookCard = createBookCard(book);
     const booksDiv = document.querySelector('#books');
     booksDiv.appendChild(bookCard);
   }
@@ -108,7 +122,7 @@ function handleSaveBook(e) {
     hasBeenRead,
     year,
   );
-  console.log("newBook:", newBook)
+
   addBookToLibrary(newBook);
 }
 
