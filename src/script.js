@@ -1,19 +1,8 @@
 const myLibrary = [
-  {
-    author: "J. R. R. Tolkien",
-    title: "Lord of the Rings",
-    numPages: 1000,
-    hasBeenRead: true,
-    year: 1954,
-  },
-  {
-    author: "George Orwell",
-    title: "1984",
-    numPages: 500,
-    hasBeenRead: false,
-    year: 1948,
-  }
-];
+  new Book("J. R. R. Tolkien","Lord of the Rings", 1000, true, 1954 ), 
+  new Book("George Orwell", "1984", 500, false, 1948),
+]
+
 
 function Book(author, title, numPages, hasBeenRead, year) {
   this.author = author;
@@ -23,8 +12,8 @@ function Book(author, title, numPages, hasBeenRead, year) {
   this.year = year;
 }
 
-function getBookIndex() {
-  return 
+Book.prototype.changeReadStatus = function() {
+  this.hasBeenRead = !this.hasBeenRead;
 }
 
 function addBookToLibrary(book) {
@@ -55,10 +44,19 @@ function createBookCard(book) {
     const removeBookBtn = document.createElement('button');
     removeBookBtn.textContent = "Remove";
     removeBookBtn.addEventListener("click", (e) => handleRemoveBook(e));
+    const changeReadStatusBtn = document.createElement('button');
+    changeReadStatusBtn.textContent = book.hasBeenRead ? "Mark as Unread" : "Mark as Read";
+    changeReadStatusBtn.addEventListener("click", (e) => handleChangeReadStatus(e, book));
 
-    bookCard.append(author, title, numPages, hasBeenRead, year, removeBookBtn);
+    bookCard.append(author, title, numPages, hasBeenRead, year, removeBookBtn, changeReadStatusBtn);
 
     return bookCard;
+}
+
+function handleChangeReadStatus(e, book) {
+  console.log('changed')
+  book.changeReadStatus();
+  displayBooks();
 }
 
 function displayBooks() {
