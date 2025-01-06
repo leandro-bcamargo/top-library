@@ -7,9 +7,12 @@
   <script src="./script.js" defer></script>
 </head>
 <body>
+  <div id="book-panel">
+
+  </div>
   <button type="button" id="new-book-btn">New Book</button>
   <dialog id="form-dialog">
-    <form action="dialog">
+    <form id="create-book-form">
       <label for="title">Title:
         <input type="text" name="title" id="title">
       </label>
@@ -23,13 +26,10 @@
         <input type="number" name="year" id="year">
       </label>
       <label for="is-read">
-        <input type="radio" name="is-read" id="read">
+        <input type="checkbox" name="is-read" id="is-read" value="read">
         Read
       </label>
-      <label for="is-read">
-        <input type="radio" name="is-read" id="not-read">
-        Not Read
-      </label>
+      <button type="submit" id="create-book-btn">Create Book</button>
     </form>
   </dialog>
 </body>
